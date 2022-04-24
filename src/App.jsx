@@ -1,10 +1,27 @@
-import { Header } from "semantic-ui-react";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes as Switch,
+  Route,
+} from "react-router-dom";
+import Character from "./pages/Character";
 
 const App = () => {
   return (
-    <div className="App">
-      <Header as="h1">Hello World</Header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/characters/:id" element={<Character />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Switch>
+    </Router>
   );
 };
 
