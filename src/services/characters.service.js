@@ -7,7 +7,15 @@ export default class CharacterService extends Base {
     this.path = `${this.baseUrl}/characters`;
   }
 
-  async getCharacters() {}
+  async getCharacters(pagination) {
+    const response = await axios.get(this.path, {
+      params: {
+        offset: pagination.offset,
+        limit: pagination.limit
+      }
+    });
+    return response.data.data;
+  }
 
   async getCharacter(id) {
     const response = await axios.get(`${this.path}/${id}`);
