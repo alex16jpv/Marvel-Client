@@ -37,6 +37,8 @@ const Characters = () => {
     };
 
     getCharacters();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination.offset]);
 
   const onPageChange = (e, { activePage }) => {
