@@ -10,6 +10,7 @@ export default class CharacterService extends Base {
   async getCharacters(pagination) {
     const response = await axios.get(this.path, {
       params: {
+        nameStartsWith: pagination.nameStartsWith,
         offset: pagination.offset,
         limit: pagination.limit
       }

@@ -7,12 +7,14 @@ import {
   Pagination,
   Grid,
   Divider,
+  Input,
 } from "semantic-ui-react";
 import CharacterService from "../../services/characters.service";
 import { reduceText } from "../../utils";
 
 const Characters = () => {
   const [characters, setCharacters] = useState(undefined);
+  const [nameStartsWith, setNameStartsWith] = useState(undefined);
   const [pagination, setPagination] = useState({
     total: 0,
     limit: 20,
@@ -22,14 +24,17 @@ const Characters = () => {
   useEffect(() => {
     const getCharacters = async () => {
       try {
-        setCharacters(undefined);
         const service = new CharacterService();
-        const { results, ...queryInfo } = await service.getCharacters(
-          pagination
-        );
+        const query = {
+          ...pagination,
+        };
+
+        if (nameStartsWith) query.nameStartsWith = nameStartsWith;
+
+        const { results, ...queryInfo } = await service.getCharacters(query);
         if (results.length > 0) {
           setCharacters(results);
-          setPagination(queryInfo);
+          setPagination((prev) => ({ ...prev, ...queryInfo }));
         }
       } catch (error) {
         console.log(error);
@@ -39,14 +44,19 @@ const Characters = () => {
     getCharacters();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pagination.offset]);
+  }, [pagination.offset, nameStartsWith]);
 
-  const onPageChange = (e, { activePage }) => {
-    console.log(activePage);
+  const onPageChange = (_, { activePage }) => {
     setPagination({
       ...pagination,
       offset: pagination.limit * (activePage - 1),
     });
+  };
+
+  const onChange = async (e) => {
+    const { value } = e.target;
+
+    setNameStartsWith(value);
   };
 
   if (!characters) {
@@ -59,7 +69,12 @@ const Characters = () => {
 
   return (
     <>
+      <br />
       <Container>
+        <Input icon="search" placeholder="Search..." onChange={onChange} />
+        <br />
+        <br />
+
         <Grid columns={4} doubling>
           {characters.map((character) => (
             <Grid.Column key={character.id}>
@@ -74,17 +89,18 @@ const Characters = () => {
         </Grid>
 
         <Divider />
+
+        <Pagination
+          firstItem={null}
+          lastItem={null}
+          pointing
+          secondary
+          siblingRange={2}
+          onPageChange={onPageChange}
+          activePage={pagination.offset / pagination.limit + 1}
+          totalPages={Math.ceil(pagination.total / pagination.limit)}
+        />
       </Container>
-      <Pagination
-        firstItem={null}
-        lastItem={null}
-        pointing
-        secondary
-        siblingRange={2}
-        onPageChange={onPageChange}
-        activePage={pagination.offset / pagination.limit + 1}
-        totalPages={Math.ceil(pagination.total / pagination.limit)}
-      />
     </>
   );
 };
