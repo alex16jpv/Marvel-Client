@@ -1,6 +1,6 @@
 export default class Base {
   baseUrl;
   constructor() {
-    this.baseUrl = "http://localhost:8000";
+    this.baseUrl = process.env.REACT_APP_API_URL;
   }
 }
