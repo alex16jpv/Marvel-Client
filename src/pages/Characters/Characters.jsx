@@ -3,7 +3,6 @@ import {
   Dimmer,
   Loader,
   Card,
-  Container,
   Pagination,
   Grid,
   Divider,
@@ -69,38 +68,35 @@ const Characters = () => {
 
   return (
     <>
+      <Input icon="search" placeholder="Search..." onChange={onChange} />
       <br />
-      <Container>
-        <Input icon="search" placeholder="Search..." onChange={onChange} />
-        <br />
-        <br />
+      <br />
 
-        <Grid columns={4} doubling>
-          {characters.map((character) => (
-            <Grid.Column key={character.id}>
-              <Card
-                href={`/characters/${character.id}`}
-                image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                header={character.name}
-                description={reduceText(character.description)}
-              />
-            </Grid.Column>
-          ))}
-        </Grid>
+      <Grid columns={4} doubling>
+        {characters.map((character) => (
+          <Grid.Column key={character.id}>
+            <Card
+              href={`/characters/${character.id}`}
+              image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              header={character.name}
+              description={reduceText(character.description)}
+            />
+          </Grid.Column>
+        ))}
+      </Grid>
 
-        <Divider />
+      <Divider />
 
-        <Pagination
-          firstItem={null}
-          lastItem={null}
-          pointing
-          secondary
-          siblingRange={2}
-          onPageChange={onPageChange}
-          activePage={pagination.offset / pagination.limit + 1}
-          totalPages={Math.ceil(pagination.total / pagination.limit)}
-        />
-      </Container>
+      <Pagination
+        firstItem={null}
+        lastItem={null}
+        pointing
+        secondary
+        siblingRange={2}
+        onPageChange={onPageChange}
+        activePage={pagination.offset / pagination.limit + 1}
+        totalPages={Math.ceil(pagination.total / pagination.limit)}
+      />
     </>
   );
 };
