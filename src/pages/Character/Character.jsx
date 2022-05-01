@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CharacterService from "../../services/characters.service";
 import {
-  Container,
   Dimmer,
   Divider,
   Grid,
@@ -54,25 +53,23 @@ const Character = () => {
 
       <Divider />
 
-      <Container>
-        <Grid columns={2} divided>
-          <Grid.Row>
-            <Grid.Column>
-              <Header as="h3">Comics</Header>
-              <List>
-                {character.comics.items.map((comic) => (
-                  <List.Item key={comic.resourceURI}>{comic.name}</List.Item>
-                ))}
-              </List>
-            </Grid.Column>
+      <Grid columns={2} divided>
+        <Grid.Row>
+          <Grid.Column>
+            <Header as="h3">Comics</Header>
+            <List>
+              {character.comics.items.map((comic) => (
+                <List.Item key={comic.resourceURI}>{comic.name}</List.Item>
+              ))}
+            </List>
+          </Grid.Column>
 
-            <Grid.Column>
-              <Header as="h3">Series</Header>
-              Comming soon...
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
+          <Grid.Column>
+            <Header as="h3">Series</Header>
+            Comming soon...
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 };
