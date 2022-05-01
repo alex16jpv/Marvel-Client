@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from "./layers/Navbar";
-import Character from "./pages/Character";
+import Character from "./pages/Characters/Character";
 import Characters from "./pages/Characters";
 
 const App = () => {

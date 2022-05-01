@@ -3,20 +3,19 @@ import { Link, useLocation } from "react-router-dom";
 import { Container, Menu } from "semantic-ui-react";
 
 const Navbar = ({ children }) => {
-  const url = window.location.href;
   const { pathname } = useLocation();
   const [activeItem, setActiveItem] = useState(undefined);
-
+  
   const handleClick = (_, { name }) => {
     setActiveItem(name);
   };
-
+  
   useEffect(() => {
     const path = pathname.split("/")[1];
 
     if (!path) setActiveItem("characters");
     else setActiveItem(path);
-  }, [url]);
+  }, [pathname]);
 
   const items = [
     {
