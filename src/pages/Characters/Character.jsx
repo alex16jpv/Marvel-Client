@@ -6,7 +6,7 @@ import {
   Divider,
   Grid,
   Header,
-  Image,
+  Item,
   List,
   Loader,
 } from "semantic-ui-react";
@@ -41,23 +41,38 @@ const Character = () => {
 
   return (
     <div>
-      <Image
-        centered
-        circular
-        size="small"
-        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-      />
-      <Header as="h1" icon textAlign="center">
-        {character.name}
-      </Header>
+      <Item.Group>
+        <Item>
+          <Item.Image
+            size="small"
+            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+          />
+
+          <Item.Content>
+            <Item.Header as="h1">{character.name}</Item.Header>
+            <Item.Description>{character.description}</Item.Description>
+            <Item.Extra>
+              Additional Details
+              <List>
+                <List.Item>Comics: {character.comics.available}</List.Item>
+                <List.Item>Series: {character.series.available}</List.Item>
+                <List.Item>Stories: {character.stories.available}</List.Item>
+                <List.Item>Events: {character.events.available}</List.Item>
+              </List>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
 
       <Divider />
 
-      <Grid columns={2} divided>
+      <Grid columns={4} divided>
         <Grid.Row>
           <Grid.Column>
-            <Header as="h3">Comics</Header>
-            <List>
+            <Header as="h3">
+              Comics ({`${character.comics.available} Available`})
+            </Header>
+            <List bulleted>
               {character.comics.items.map((comic) => (
                 <List.Item key={comic.resourceURI}>{comic.name}</List.Item>
               ))}
@@ -65,8 +80,36 @@ const Character = () => {
           </Grid.Column>
 
           <Grid.Column>
-            <Header as="h3">Series</Header>
-            Comming soon...
+            <Header as="h3">
+              Series ({`${character.series.available} Available`})
+            </Header>
+            <List bulleted>
+              {character.series.items.map((series) => (
+                <List.Item key={series.resourceURI}>{series.name}</List.Item>
+              ))}
+            </List>
+          </Grid.Column>
+
+          <Grid.Column>
+            <Header as="h3">
+              Stories ({`${character.stories.available} Available`})
+            </Header>
+            <List bulleted>
+              {character.stories.items.map((story) => (
+                <List.Item key={story.resourceURI}>{story.name}</List.Item>
+              ))}
+            </List>
+          </Grid.Column>
+
+          <Grid.Column>
+            <Header as="h3">
+              Events ({`${character.events.available} Available`})
+            </Header>
+            <List bulleted>
+              {character.events.items.map((event) => (
+                <List.Item key={event.resourceURI}>{event.name}</List.Item>
+              ))}
+            </List>
           </Grid.Column>
         </Grid.Row>
       </Grid>
