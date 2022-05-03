@@ -49,7 +49,9 @@ const Character = () => {
           />
 
           <Item.Content>
-            <Item.Header as="h1">{character.name}</Item.Header>
+            <Header as="h1" color="red">
+              {character.name}
+            </Header>
             <Item.Description>{character.description}</Item.Description>
             <Item.Extra>
               Additional Details
@@ -69,7 +71,7 @@ const Character = () => {
       <Grid columns={4} divided>
         <Grid.Row>
           <Grid.Column>
-            <Header as="h3">
+            <Header as="h3" color="red">
               Comics ({`${character.comics.available} Available`})
             </Header>
             <List bulleted>
@@ -80,7 +82,7 @@ const Character = () => {
           </Grid.Column>
 
           <Grid.Column>
-            <Header as="h3">
+            <Header as="h3" color="red">
               Series ({`${character.series.available} Available`})
             </Header>
             <List bulleted>
@@ -91,7 +93,7 @@ const Character = () => {
           </Grid.Column>
 
           <Grid.Column>
-            <Header as="h3">
+            <Header as="h3" color="red">
               Stories ({`${character.stories.available} Available`})
             </Header>
             <List bulleted>
@@ -102,7 +104,7 @@ const Character = () => {
           </Grid.Column>
 
           <Grid.Column>
-            <Header as="h3">
+            <Header as="h3" color="red">
               Events ({`${character.events.available} Available`})
             </Header>
             <List bulleted>

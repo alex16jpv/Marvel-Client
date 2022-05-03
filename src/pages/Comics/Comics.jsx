@@ -70,6 +70,7 @@ const Comics = () => {
               href={`/comics/${comic.id}`}
               image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
               header={comic.title}
+              color="red"
             />
           </Grid.Column>
         ))}
@@ -86,6 +87,7 @@ const Comics = () => {
         onPageChange={onPageChange}
         activePage={pagination.offset / pagination.limit + 1}
         totalPages={Math.ceil(pagination.total / pagination.limit)}
+        color="red"
       />
     </>
   );

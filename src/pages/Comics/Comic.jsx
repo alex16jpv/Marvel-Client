@@ -46,7 +46,7 @@ const Character = () => {
         size="small"
         src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
       />
-      <Header as="h1" icon textAlign="center">
+      <Header as="h1" icon textAlign="center" color="red">
         {comic.title}
       </Header>
 
@@ -55,7 +55,9 @@ const Character = () => {
       <Grid columns={2} divided>
         <Grid.Row>
           <Grid.Column>
-            <Header as="h3">Creators</Header>
+            <Header as="h3" color="red">
+              Creators
+            </Header>
             <List>
               {comic.creators.items.map((serie) => (
                 <List.Item key={serie.resourceURI}>{serie.name}</List.Item>

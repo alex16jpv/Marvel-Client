@@ -80,6 +80,7 @@ const Characters = () => {
               image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               header={character.name}
               description={reduceText(character.description)}
+              color="red"
             />
           </Grid.Column>
         ))}
@@ -96,6 +97,7 @@ const Characters = () => {
         onPageChange={onPageChange}
         activePage={pagination.offset / pagination.limit + 1}
         totalPages={Math.ceil(pagination.total / pagination.limit)}
+        color="red"
       />
     </>
   );

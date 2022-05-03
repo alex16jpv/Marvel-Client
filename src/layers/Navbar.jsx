@@ -5,11 +5,11 @@ import { Container, Menu } from "semantic-ui-react";
 const Navbar = ({ children }) => {
   const { pathname } = useLocation();
   const [activeItem, setActiveItem] = useState(undefined);
-  
+
   const handleClick = (_, { name }) => {
     setActiveItem(name);
   };
-  
+
   useEffect(() => {
     const path = pathname.split("/")[1];
 
@@ -49,7 +49,7 @@ const Navbar = ({ children }) => {
   return (
     <>
       <Container>
-        <Menu pointing secondary items={items} />
+        <Menu pointing secondary items={items} color="red" />
         {children}
       </Container>
     </>
