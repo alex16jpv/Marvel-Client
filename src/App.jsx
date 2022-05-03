@@ -7,6 +7,8 @@ import {
 import Navbar from "./layers/Navbar";
 import Character from "./pages/Characters/Character";
 import Characters from "./pages/Characters";
+import Comics from "./pages/Comics";
+import Comic from "./pages/Comics/Comic";
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
           <Route path="/" element={<Characters />} />
           <Route path="/characters" element={<Characters />} />
           <Route path="/characters/:id" element={<Character />} />
+          <Route path="/comics" element={<Comics />} />
+          <Route path="/comics/:id" element={<Comic />} />
           <Route
             path="*"
             element={
